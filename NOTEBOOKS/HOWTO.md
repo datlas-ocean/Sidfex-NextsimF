@@ -1,6 +1,6 @@
 Guidelines to set up and execute our forecasting tools on any computer.
 
-!!! NOTE: As of today 2024-05-18 the set up of this repository is still on-going. Do not use before it is ready to be used. !!!.
+_!!! NOTE: As of today 2024-05-18 the set up of this repository is still on-going. Do not use before it is ready to be used. !!!._
 
 ## 1. Installation and dependecies
 <details>
