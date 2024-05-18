@@ -5,6 +5,8 @@ This repository contains the tools and tutorials  to forecast the  trajectories 
 * a [tutorial](./NOTEBOOKS/HOWTO.md) to set up and make use of the tools,
 * the required [scripts and codes](./SRC/) to produce the forecast,
 * example notebooks to plot and explore the produced forecasted trajectories.
+  _!!! NOTE: As of today 2024-05-18 the set up of this repository is still on-going. Do not use before it is ready to be used. !!!._
+  
 
 ### Credits:
 This work is a collaboration between Datlas and IGE in Grenoble, France, with NERSC, Bergen, Norway and Alfred Wegener Institute, Bremerhaven, Germany.
