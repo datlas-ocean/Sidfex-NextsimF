@@ -68,13 +68,13 @@ Required if you want to use the plotting functionality (usually triggered with `
 
 </details>
 
-# 2. Setp up
+## 2. Setp up
 <details>
 <summary>Click here to drop down the set up section.</summary>
 
 </details>
 
-# 3. Run the tool
+## 3. Run the tool
 <details>
 <summary>Click here to drop down the  section to run the forecasting tool.</summary>
 
