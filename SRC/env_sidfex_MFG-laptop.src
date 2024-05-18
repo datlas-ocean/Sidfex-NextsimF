@@ -1,0 +1,25 @@
+# sitrack directories
+export DIR_sitrack="/Users/sleroux/DEVGIT/sitrack/"
+export DIR_NC_FCST=${DIR_sitrack}nc/
+export DIR_gnrate_mesh=${DIR_sitrack}tools/
+export DIR_INITSEED=${DIR_gnrate_mesh}nc/
+
+# sidfex directories
+export DIR_sidfex=/Users/grungm/Documents/MEOM_seaice/sidfex/
+export DIR_SCRIPTS=$DIR_sidfex/SCRIPTS/
+export DIR_workdir=${DIR_sidfex}/workdir/working_${analDate}/
+
+#get_buoys:
+export DIR_buoy=${DIR_workdir}/buoy_data/
+
+#get_nsim:
+export DIR_nextsim=${DIR_workdir}/nextsim_data/
+
+#to_sidfex:
+# variables to give python script
+export DIRnc='/Users/grungm/DEV/sitrack/nc/'
+
+export DIR_OUTsidfex=${DIR_workdir}sidfex_output/
+
+
+
