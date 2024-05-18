@@ -1,8 +1,8 @@
 Guidelines to set up and execute our forecasting tools on any computer.
 
-# Installation and dependecies
+## 1. Installation and dependecies
 <details>
-<summary>Click here to drop down.</summary>
+<summary>Click here to drop down the section about installation.</summary>
     
 ### To get our Sidfex-NextsimF tool:
 
@@ -68,6 +68,14 @@ Required if you want to use the plotting functionality (usually triggered with `
 
 </details>
 
-# Setp up
+# 2. Setp up
+<details>
+<summary>Click here to drop down the set up section.</summary>
 
-# Run the tool
+</details>
+
+# 3. Run the tool
+<details>
+<summary>Click here to drop down the  section to run the forecasting tool.</summary>
+
+</details>
