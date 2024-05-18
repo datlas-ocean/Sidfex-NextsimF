@@ -5,7 +5,7 @@ import datetime
 import copernicusmarine as copernicusmarine
 
 # login to CMEMS: credentials only needs to be entered once through below line
-#copernicusmarine.login()
+copernicusmarine.login()
 
 # date the model is run
 analDate = sys.argv[1]

@@ -46,11 +46,11 @@ if [[ "$(uname)" == "Darwin" ]]; then
         echo "gdate could not be found. Please install it using 'brew install coreutils'."
         exit 1
     else
-         echo "MacOS platfeform. `gdate` command is found"
+         echo "MacOS platfeform. The gdate command was found"
     fi
 else
     # Assume Linux platform
     DATE_CMD="date"
-    echo "Not a mac. Assume linux platfeform. `date` command is found."
+    echo "Not a mac. Assume linux platfeform. The date was command is found."
 fi
 export DATE_CMD

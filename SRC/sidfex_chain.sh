@@ -27,7 +27,7 @@ source ./env_sidfex.src
 # SCRIPTS
 # get sidfex buoys
 #echo "######################## CURRENTLY RUNNING: get_buoy_data-auto_DKRZ.sh ########################"
-bash ${DIR_SCRIPTS}/get_buoy_data-auto_DKRZ.sh ${todayDate} ${runDate} ${analDate}
+#bash ${DIR_SCRIPTS}/get_buoy_data-auto_DKRZ.sh ${todayDate} ${runDate} ${analDate}
 
 # get nextsim-f data from CMEMS
 #echo "######################## CURRENTLY RUNNING: get_nextsim_files.sh ########################"
@@ -39,7 +39,7 @@ bash ${DIR_SCRIPTS}/get_buoy_data-auto_DKRZ.sh ${todayDate} ${runDate} ${analDat
 
 # RUN HINDCAST
 #echo "######################## CURRENTLY RUNNING: hindcast_seeds.sh ########################"
-#bash ${DIR_SCRIPTS}hindcast_seeds.sh ${analDate}
+bash ${DIR_SCRIPTS}hindcast_seeds.sh ${analDate}
 
 # initiate/generate seeding
 #echo "######################## CURRENTLY RUNNING: generate_sidfex_seeding.sh ########################"
