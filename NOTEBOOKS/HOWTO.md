@@ -1,13 +1,12 @@
 Guidelines to set up and execute our forecasting tools on any computer.
 
-<details>
-
-<summary>Installation and dependecies</summary>
-
 # Installation and dependecies
+<details>
+<summary>Click here to drop down.</summary>
+    
+### To get our Sidfex-NextsimF tool:
 
-### To get our tools:
-
+        git clone https://github.com/datlas-ocean/Sidfex-NextsimF.git
 
 #### `copernicusmarine`
 - If you do not already have a user at `copernicusmarine`, registrer [here](https://data.marine.copernicus.eu/register). This can take a few days.
@@ -68,3 +67,7 @@ Required if you want to use the plotting functionality (usually triggered with `
 [Climporn](https://github.com/brodeau/climporn) is available here.
 
 </details>
+
+# Setp up
+
+# Run the tool
