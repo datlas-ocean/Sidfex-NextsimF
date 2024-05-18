@@ -16,6 +16,6 @@ with contributions from Laurent Brodeau (Datlas) for the development of the [Moj
 
 ---
 ## In this repository, you will find:
-* a [tutorial] to set up and make use of the tools,
-* the required [scripts and codes] to produce the forecast,
+* a [tutorial](./NOTEBOOKS/HOWTO.md) to set up and make use of the tools,
+* the required [scripts and codes](./SRC/) to produce the forecast,
 * example notebooks to plot and explore the produced forecasted trajectories.
