@@ -1,4 +1,5 @@
 #!/bin/bash
+# This script loops over latest buoy updated positions and advect to midnight if necessary, based on the sea ice velocities from the hindcast.
 
 # TIME
 # get date of today 
@@ -15,7 +16,7 @@ if [ -f "${DIR_buoy}sidfexloc_out_${analDate}.dat" ]; then
 rm -f "${DIR_buoy}sidfexloc_out_${analDate}.dat"
 fi
 
-# LOOP OVER BUOY UPDATES AND ADVECT To MIDNIGHT IF NECCESSARY
+# LOOP OVER latest buoy updated positions and advect to midnight if necessary
 while read line; do
     # extract buoyID from original sidfexloc
     echo "----------- Extract buoyID from sidfexloc_YMD.dat -----------"
