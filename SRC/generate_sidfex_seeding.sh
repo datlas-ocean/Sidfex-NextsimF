@@ -30,4 +30,5 @@ fi
 #${PY_CMD} ${DIR_gnrate_mesh}generate_idealized_seeding.py -d ${propagateDate}_00:00:00
 
 # Generate seeds: sidfex buoys for updated sitrack (for arctic mesh) #MFG
-${PY_CMD} ${DIR_gnrate_mesh}generate_sidfex_seeding_vol2.py -d ${propagateDate}_00:00:00  --lsidfex 1 
+${PY_CMD} ${DIR_gnrate_mesh}generate_sidfex_seeding_vol2.py -d ${propagateDate}_00:00:00  --lsidfex 1
+mv ./nc/* ${DIR_INITSEED}/

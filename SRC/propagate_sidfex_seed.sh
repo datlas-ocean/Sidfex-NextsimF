@@ -11,6 +11,7 @@ echo "analdate $analDate"
 ${PY_CMD} ${DIR_sitrack}si3_part_tracker.py -i ${DIR_nextsim}/${yesterdayDate}_${finalForecastDate}_hr-nersc-MODEL-nextsimf-concatenated-ARC-b${analDate}-fv00.0.nc \
                       -m ${DIR_gnrate_mesh}/coordinates_mesh_mask.nc \
                       -s ${DIR_INITSEED}sitrack_seeding_sidfex_${analDate}_00.nc \
-                      -g A -R 3 -u vxsi -v vysi -p 12
+                      -g A -R 3km -u vxsi -v vysi -p 12
 
+mv ./nc/* ${DIR_INITSEED} 
 

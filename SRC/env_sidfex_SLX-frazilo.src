@@ -1,7 +1,7 @@
 # This is where you set up your environment 
 
 # PYTHON CMD
-export PY_CMD=python3   # on frazilo
+export PY_CMD="python3"   # on frazilo
 #export PY_CMD=python   # on macos laptop 
                                                                                                                                            
 
@@ -10,21 +10,27 @@ export DIR_mojito="/home/sleroux/DEVGIT/mojito/"
 
 # Where sitrack is installed:
 export DIR_sitrack="/home/sleroux/DEVGIT/sitrack/"
-export DIR_NC_FCST=${DIR_sitrack}nc/
 export DIR_gnrate_mesh=${DIR_sitrack}tools/
-export DIR_INITSEED=${DIR_gnrate_mesh}nc/
 
 # Where our SIDFEX forecasting tools are installed
 export DIR_sidfex="/home/sleroux/DEVGIT/Sidfex-NextsimF/SRC/"
 export DIR_SCRIPTS=$DIR_sidfex/
+
+# Where the input and output files are stored:
+# Main:
 export DIR_DATWORK="/data/sleroux/SIDFEX/"
+# then one directory created per operational day: 
 export DIR_workdir=${DIR_DATWORK}workdir/working_${analDate}/
-
-# Where to store the downloaded SIDFEX buoys:
+# one subdirectory where the intermediate outputs are stored:
+export DIR_INITSEED=${DIR_workdir}nc/
+export DIR_NC_FCST=${DIR_workdir}nc/
+# one subdirectory where to store the downloaded SIDFEX buoys:
 export DIR_buoy=${DIR_workdir}/buoy_data/
-
-# Where to store the downloaded NeXtSIM-F data
+# one subdirectory where to store the downloaded NeXtSIM-F data
 export DIR_nextsim=${DIR_workdir}/nextsim_data/
+# output directory of sidfex forecast ready to be sent
+export DIR_OUTsidfex=${DIR_workdir}toSidfex/
+
 
 # MISC (TO CLEAN?)
 # variables to give python script
@@ -46,11 +52,11 @@ if [[ "$(uname)" == "Darwin" ]]; then
         echo "gdate could not be found. Please install it using 'brew install coreutils'."
         exit 1
     else
-         echo "MacOS platfeform. The gdate command was found"
+         echo "OK, we're on a MacOS platfeform. The gdate command was found. Everything is bon."
     fi
 else
     # Assume Linux platform
     DATE_CMD="date"
-    echo "Not a mac. Assume linux platfeform. The date was command is found."
+    echo "Ok, we're not on a macOS plateform, so we assume it's a linux platfeform. The date was command is found.  Everything is bon."
 fi
 export DATE_CMD

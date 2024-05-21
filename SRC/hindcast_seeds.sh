@@ -57,7 +57,10 @@ while read line; do
         # generate initial seeds #check buoyid, lat, lon, time
         echo "----------- IN HINDCAST: generate initial seed (.py) -------------"
         ${PY_CMD} ${DIR_gnrate_mesh}generate_sidfex_seeding_vol2.py -d ${tb}  --lsidfex 1
-    
+        mkdir -p ${DIR_INITSEED} 
+	mv ./nc/* ${DIR_INITSEED}
+
+
         # Propagate seeds until midnight
         echo "-------------- IN HINDCAST: ADVECT SEEDS ------------"
         #mkdir -p ${DIR_FCSTSEED} ${DIR_ncOUT} #MFG
@@ -65,10 +68,11 @@ while read line; do
         ${PY_CMD} ${DIR_sitrack}si3_part_tracker.py -i ${DIR_nextsim}/${yesterdayDate}_${finalForecastDate}_hr-nersc-MODEL-nextsimf-concatenated-ARC-b${analDate}-fv00.0.nc \
                         -m ${DIR_gnrate_mesh}/coordinates_mesh_mask.nc \
                         -s ${DIR_INITSEED}sitrack_seeding_sidfex_${t_genNC}_${init_h}.nc \
-                        -e ${midnightDate} -g A -R 3 -u vxsi -v vysi -p 12
+                        -e ${midnightDate} -g A -R 3km -u vxsi -v vysi -p 12
+        mv ./nc/* ${DIR_INITSEED}
 
         echo "-------------- IN HINDCAST: CONVERTING NC TO ASCII ------------"
-        ${PY_CMD} ${DIR_SCRIPTS}convert_nc_to_ascii.py ${DIR_NC_FCST}/ data_A-grid_${yesterdayDate}_nersc_tracking_sidfex_1h_${t_genNC}h${h_nearest}_${analDate}h00_3km.nc > ${DIR_buoy}${bID}_pos_mnght_${analDate}.dat
+        ${PY_CMD} ${DIR_SCRIPTS}convert_nc_to_ascii.py ${DIR_NC_FCST}/ data_A-grid_${yesterdayDate}_nersc_tracking_sidfex_seeding_1h_${t_genNC}h${h_nearest}_${analDate}h00_3km.nc > ${DIR_buoy}${bID}_pos_mnght_${analDate}.dat
         read -r byID lon_mnght lat_mnght < "${DIR_buoy}${bID}_pos_mnght_${analDate}.dat"
         echo -e "$byID $lon_mnght $lat_mnght" >> "${DIR_buoy}sidfexloc_out_${analDate}.dat"
 

@@ -1,0 +1,6 @@
+SRC/nc/
+SRC/seed/
+SRC/npz/
+SRC/figs/
+*.dat
+

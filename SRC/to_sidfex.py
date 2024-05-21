@@ -62,10 +62,15 @@ def get_variables_from_forecast(DIRnc, nc_filename, GroupID,MethodID, DIRsidfexo
 
 
 DIRfcst = sys.argv[1] #'/Users/grungm/DEV/sitrack/nc/' # change for sys 
+print(DIRfcst)
 file_fcst =  sys.argv[2] #'data_A-grid_20240227_nersc_tracking_sidfex_1h_20240227h00_20240308h00_3km.nc' # change for sys 
+print(file_fcst)
 GroupID =  sys.argv[3] #'igedatlas001'
+print(GroupID)
 MethodID =  sys.argv[4] #'neXtSIM-F-sitrack'
+print(MethodID)
 #EnsMemNum =  sys.argv[5] #'001'
 DIRsidfexout = sys.argv[5]
+print(DIRsidfexout)
 fcst = get_variables_from_forecast(DIRfcst, file_fcst, GroupID, MethodID, DIRsidfexout)
 
