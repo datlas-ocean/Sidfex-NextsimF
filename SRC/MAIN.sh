@@ -32,8 +32,8 @@ source ./env_sidfex.src
 
 # SCRIPTS
 # get sidfex buoys
-#echo "######################## CURRENTLY RUNNING: get_buoy_data-auto_DKRZ.sh (GET UPDATED BUOY POSITIONS) ########################"
-#bash ${DIR_SCRIPTS}/get_buoy_data-auto_DKRZ.sh ${todayDate} ${runDate} ${analDate}
+echo "######################## CURRENTLY RUNNING: get_buoy_data-auto_DKRZ.sh (GET UPDATED BUOY POSITIONS) ########################"
+bash ${DIR_SCRIPTS}/get_buoy_data-auto_DKRZ.sh ${todayDate} ${runDate} ${analDate}
 
 # get nextsim-f data from CMEMS
 #echo "######################## CURRENTLY RUNNING: get_nextsim_files.sh (GET NEXTISIM SEA ICEHINCAST AND FORECAST) ########################"
@@ -44,21 +44,21 @@ source ./env_sidfex.src
 #bash ${DIR_SCRIPTS}generate_arctic_mesh.sh ${analDate}
 
 # RUN HINDCAST
-#echo "######################## CURRENTLY RUNNING: hindcast_seeds.sh (HINDCAST FOR INITIAL CONDITIONS AT MIDNIGHT)######"
-#bash ${DIR_SCRIPTS}hindcast_seeds.sh ${analDate}
+echo "######################## CURRENTLY RUNNING: hindcast_seeds.sh (HINDCAST FOR INITIAL CONDITIONS AT MIDNIGHT)######"
+bash ${DIR_SCRIPTS}hindcast_seeds.sh ${analDate}
 
 #initiate/generate seeding
-#echo "######################## CURRENTLY RUNNING: generate_sidfex_seeding.sh ########################"
-#bash ${DIR_SCRIPTS}generate_sidfex_seeding.sh ${analDate}
+echo "######################## CURRENTLY RUNNING: generate_sidfex_seeding.sh ########################"
+bash ${DIR_SCRIPTS}generate_sidfex_seeding.sh ${analDate}
 
 # RUN FORECAST
 # propagate seeds based on the forecasted sea ice velocities 
-#echo "######################## CURRENTLY RUNNING: propagate_sidfex_seed.sh (FORECAST) ########################"
-#bash ${DIR_SCRIPTS}propagate_sidfex_seed.sh ${analDate}
+echo "######################## CURRENTLY RUNNING: propagate_sidfex_seed.sh (FORECAST) ########################"
+bash ${DIR_SCRIPTS}propagate_sidfex_seed.sh ${analDate}
 
 # to sidfex - output file
-#echo "######################## CURRENTLY RUNNING: to_sidfex.sh ########################"
-#bash ${DIR_SCRIPTS}to_sidfex.sh ${analDate}
+echo "######################## CURRENTLY RUNNING: to_sidfex.sh ########################"
+bash ${DIR_SCRIPTS}to_sidfex.sh ${analDate}
 
 # submit outputted ascii-files to the sidfex server
 #echo "######################## CURRENTLY RUNNING: submit_file2sidfex.sh ########################"
