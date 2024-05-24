@@ -33,6 +33,7 @@ echo "analdate $analDate"
 
 
 mkdir -p ${DIR_workdir} ${DIR_buoy}
+mkdir -p ${DIR_INITSEED}
 outputfile=sidfexloc
 
 # SLX

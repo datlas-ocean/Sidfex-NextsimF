@@ -57,7 +57,6 @@ while read line; do
         # generate initial seeds #check buoyid, lat, lon, time
         echo "----------- IN HINDCAST: generate initial seed (.py) -------------"
         ${PY_CMD} ${DIR_gnrate_mesh}generate_sidfex_seeding_vol2.py -d ${tb}  --lsidfex 1
-        mkdir -p ${DIR_INITSEED} 
 	mv ./nc/* ${DIR_INITSEED}
 
 
