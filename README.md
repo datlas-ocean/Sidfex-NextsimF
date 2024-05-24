@@ -9,7 +9,7 @@ This repository contains the tools and tutorials  to forecast the  trajectories 
   _!!! NOTE: As of today 2024-05-18 the set up of this repository is still on-going. Do not use before it is ready to be used. !!!._
 
 ### Our forecatsts for SIDFEX buoys are available here:
-[on the DKRZ SIDFEX webpage (click here).](https://swiftbrowser.dkrz.de/public/dkrz_0262ea1f00e34439850f3f1d71817205/SIDFEx_processed/igedatlas001/)
+* [on the DKRZ SIDFEX webpage (click here).](https://swiftbrowser.dkrz.de/public/dkrz_0262ea1f00e34439850f3f1d71817205/SIDFEx_processed/igedatlas001/)
 
 ### Credits:
 This work is a collaboration between Datlas and IGE in Grenoble, France, with NERSC, Bergen, Norway and Alfred Wegener Institute, Bremerhaven, Germany.
