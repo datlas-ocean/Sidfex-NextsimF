@@ -46,7 +46,7 @@ scp2CAL1 "${DIR_OUTsidfex}*.txt" /mnt/summer/DATA_MEOM/DATA_SET/SIDFEX-SeaIce-bu
 
 # copy nextsimf files from FRAZILO to SUMMER storage
 echo "copy nextsimf files from FRAZILO to SUMMER storage"
-scp2CAL1 "${DIR_nextsim}????????_hr-nersc-MODEL-nextsimf-ARC-b${analDate}-fv00.0.nc" /mnt/summer/DATA_MEOM/DATA_SET/NEXTSIM-F/${YYYY}/${MM}/
+#scp2CAL1 "${DIR_nextsim}????????_hr-nersc-MODEL-nextsimf-ARC-b${analDate}-fv00.0.nc" /mnt/summer/DATA_MEOM/DATA_SET/NEXTSIM-F/${YYYY}/${MM}/
 
 # then clean all (ask for confirmation)
 

@@ -37,7 +37,7 @@ bash ${DIR_SCRIPTS}/get_buoy_data-auto_DKRZ.sh ${todayDate} ${runDate} ${analDat
 
 # get nextsim-f data from CMEMS
 #echo "######################## CURRENTLY RUNNING: get_nextsim_files.sh (GET NEXTISIM SEA ICEHINCAST AND FORECAST) ########################"
-#bash ${DIR_SCRIPTS}get_nextsim_files.sh ${todayDate} ${runDate} ${analDate}
+bash ${DIR_SCRIPTS}get_nextsim_files.sh ${todayDate} ${runDate} ${analDate}
 
 # generate new mesh from the nextsim-f data
 #echo "######################## CURRENTLY RUNNING: generate_arctic_mesh.sh ########################"
@@ -62,4 +62,4 @@ bash ${DIR_SCRIPTS}to_sidfex.sh ${analDate}
 
 # submit outputted ascii-files to the sidfex server
 #echo "######################## CURRENTLY RUNNING: submit_file2sidfex.sh ########################"
-#bash ${DIR_SCRIPTS}submit_file2sidfex.sh ${analDate}
+bash ${DIR_SCRIPTS}submit_file2sidfex.sh ${analDate}
