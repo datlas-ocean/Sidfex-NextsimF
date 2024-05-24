@@ -27,7 +27,7 @@ export DIR_NC_FCST=${DIR_workdir}nc/
 # one subdirectory where to store the downloaded SIDFEX buoys:
 export DIR_buoy=${DIR_workdir}/buoy_data/
 # one subdirectory where to store the downloaded NeXtSIM-F data
-export DIR_nextsim=${DIR_workdir}/nextsim_data/
+export DIR_nextsim=${DIR_workdir}nextsim_data/
 # output directory of sidfex forecast ready to be sent
 export DIR_OUTsidfex=${DIR_workdir}toSidfex/
 
@@ -60,3 +60,12 @@ else
     echo "Ok, we're not on a macOS plateform, so we assume it's a linux platfeform. The date was command is found.  Everything is bon."
 fi
 export DATE_CMD
+
+
+#Function to ssh to CAL1/summer mount:
+function scp2CAL1() {
+# scp file to CAL1
+# $1 path of the file to copy
+# $2 path for where to copy the file remotely
+scp $1 lerouste@ige-meom-cal1.u-ga.fr:$2
+ }
