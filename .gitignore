@@ -2,5 +2,6 @@ SRC/nc/
 SRC/seed/
 SRC/npz/
 SRC/figs/
+SRC/submit_file2sidfex.sh
 *.dat
 
