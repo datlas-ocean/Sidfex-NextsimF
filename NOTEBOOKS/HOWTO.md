@@ -172,7 +172,7 @@ In `sitrack/sitrack/:
 ### Master script:
 The master-script is called `MAIN.sh` in `<YOUR-INSTALL-DIR>/Sidfex-NextsimF/SRC/`.  It  can be run in your terminal or in a cronjob. This is the ***only script that needs to be run*** once the initial setup has been done (see above section).
 
-Notice that if you are on a Linux computer and not MacOS, then command giving the date is either `date` or `gdate` respectively. The `MAIN.sh` script and the environment file deals with this by checking on which plateform we are installed and chooses the date command (`$CMD_date`) accordingly.
+Notice that if you are on a Linux computer and not MacOS, the command giving the date is either `date` or `gdate` respectively. The `MAIN.sh` script and the environment file deals with this by checking first on which plateform you are installed and then sets the date command (`$CMD_date`) accordingly.
 
 `MAIN.sh` consists of the following parts:
 
