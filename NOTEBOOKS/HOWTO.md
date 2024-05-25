@@ -6,11 +6,11 @@ _!!! NOTE: As of today 2024-05-18 the set up of this repository is still on-goin
 <details>
 <summary>Click here to drop down the section about installation.</summary>
     
-### To get our Sidfex-NextsimF tool:
+### 1.1 To get our Sidfex-NextsimF tool:
 
         git clone https://github.com/datlas-ocean/Sidfex-NextsimF.git
 
-#### `copernicusmarine`
+#### 1.2 `copernicusmarine`
 - If you do not already have a user at `copernicusmarine`, registrer [here](https://data.marine.copernicus.eu/register). This can take a few days.
 
 - Install the [copernicusmarine Toolbox](https://help.marine.copernicus.eu/en/collections/9080063-copernicus-marine-toolbox) via `mamba`, `conda` or `pip`:
@@ -38,12 +38,12 @@ _!!! NOTE: As of today 2024-05-18 the set up of this repository is still on-goin
 
   As of today (26. April 2024), the latest version is `copernicusmarine-1.1.1`. You can check which version you have by running `copernicusmarine --version` or `copernicusmarine -V` in your command line interface in  your terminal.
 
-#### `wget`
+#### 1.3 `wget`
 - Can be installed using [homebrew](https://brew.sh):
 
         brew install wget
 
-#### `sitrack`
+#### 1.4 `sitrack`
 - clone [`sitrack`](https://github.com/brodeau/sitrack) into the `<somewhere>` directory on your computer
 
         cd <somewhere>/
@@ -53,7 +53,7 @@ _!!! NOTE: As of today 2024-05-18 the set up of this repository is still on-goin
 
         export PYTHONPATH=<absolute_path_to_somewhere>/sitrack:${PYTHONPATH}
 
-#### `mojito`
+#### 1.5 `mojito`
 - clone [`mojito`](https://github.com/brodeau/mojito) into the `<somewhere>` directory on your computer
 
         cd <somewhere>/
@@ -63,7 +63,7 @@ _!!! NOTE: As of today 2024-05-18 the set up of this repository is still on-goin
 
         export PYTHONPATH=<absolute_path_to_somewhere>/mojito:${PYTHONPATH}
 
-#### `python-basemap` and `climporn` package
+#### 1.6 `python-basemap` and `climporn` package
 Required if you want to use the plotting functionality (usually triggered with `iplot=1` in the various scripts in `sitrack`).
 
 [Climporn](https://github.com/brodeau/climporn) is available here.
