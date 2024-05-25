@@ -4,7 +4,7 @@ _!!! NOTE: As of today 2024-05-18 the set up of this repository is still on-goin
 
 ## 1. Installation and dependecies
 <details>
-<summary>_Click here to drop down the section about installation._</summary>
+<summary> _Click here to drop down the section about installation._ </summary>
     
 ### 1.1 To get our Sidfex-NextsimF tool:
 
@@ -72,43 +72,52 @@ Required if you want to use the plotting functionality (usually triggered with `
 
 ## 2. Setp up
 <details>
-<summary>_Click here to drop down the set up section._</summary>
+<summary> _Click here to drop down the set up section._ </summary>
 
-### 2.1 Edit the environment file
+### 2.1 Edit the environment file `env_sidfex.src`
+This is the file  where you set all the paths to the different directories.
+```
+cd YOUR-INSTALL-DIR>/Sidfex-NextsimF/SRC/
+# make a copy of the initial file for your record
+cp env_sidfex.src env_sidfex_SRC.src
+# then edit your env file for your needs:
+vi env_sidfex.src
+```
+
 
 ### 2.2 Edit sitrack
 Some of this is needed only until LB has accepted our pull request to sitrack. TO BE UPDATED.
 
-### Link to our `si3_part_tracker.py`:
+#### Link to our `si3_part_tracker.py`:
 * In `sitrack`:
 ```
 cd <YOUR-INSTALL-DIR>/sitrack/
 mv si3_part_tracker.py si3_part_tracker_SRC.py
 ln -sf <YOUR-INSTALL-DIR>/Sidfex-NextsimF/SRC/scripts4sitrack/si3_part_tracker.py .
 ```
-### Link to our `generate_sidfex_seeding_vol2.py`:
+#### Link to our `generate_sidfex_seeding_vol2.py`:
 ```
 cd <YOUR-INSTALL-DIR>/sitrack/tools/
 ln -sf <YOUR-INSTALL-DIR>/Sidfex-NextsimF/SRC/scripts4sitrack/generate_sidfex_seeding_vol2.py .
 ```
 
-### `xy_arctic_to_meshmask.py`
+#### `xy_arctic_to_meshmask.py`
 * In `sitrack/tools/xy_arctic_to_meshmask.py`: Changed default values of *lat0* and *lon0* to lat0=90., lon0=-45.
 
-### `util.py`
+#### `util.py`
 In `sitrack/sitrack/:
 * Function `Geo2CartNPSkm1D`: changed default values of *lat0* and *lon0* to `Geo2CartNPSkm1D( pcoorG, lat0=90., lon0=-45. ):`
 * Function `CartNPSkm2Geo1D`: changed default values of *lat0* and *lon0* to `CartNPSkm2Geo1D( pcoorC, lat0=90., lon0=-45. ):`
 * Function `ConvertGeo2CartesianNPSkm`: changed default values of *lat0* and *lon0* to `ConvertGeo2CartesianNPSkm( plat, plon, lat0=90., lon0=-45. ):`
 * Function `ConvertCartesianNPSkm2Geo`: changed default values of *lat0* and *lon0* to `ConvertCartesianNPSkm2Geo( pY, pX, lat0=90., lon0=-45. ):`
 
-### `ncio.py`
+#### `ncio.py`
 In `sitrack/sitrack/:
 * Line 230: `v_bid  = f_out.createVariable('id_buoy',   'i8',(cd_buoy,))` changed from `i4` to `i8`.
 * Line 249: `    v_buoy[:] = np.arange(Nb,dtype='i8')` changed from `i4` to `i8`.
 * Line 457 inside function `ModelFileTimeInfo`: `zz = split('-',vn[2])` changed `vn[1]` to `vn[2]` due to naming of concatinated `neXtSIM-F` file.
 
-### `tracking.py`
+#### `tracking.py`
 In `sitrack/sitrack/:
 * Added the function:
 
