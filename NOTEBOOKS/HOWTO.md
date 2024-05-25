@@ -4,7 +4,7 @@ _!!! NOTE: As of today 2024-05-18 the set up of this repository is still on-goin
 
 ## 1. Installation and dependecies
 <details>
-<summary> _Click here to drop down the section about installation._ </summary>
+<summary> Click here to drop down the section about installation. </summary>
     
 ### 1.1 To get our Sidfex-NextsimF tool:
 
@@ -72,12 +72,12 @@ Required if you want to use the plotting functionality (usually triggered with `
 
 ## 2. Setp up
 <details>
-<summary> _Click here to drop down the set up section._ </summary>
+<summary> Click here to drop down the set up section. </summary>
 
 ### 2.1 Edit the environment file `env_sidfex.src`
 This is the file  where you set all the paths to the different directories.
 ```
-cd YOUR-INSTALL-DIR>/Sidfex-NextsimF/SRC/
+cd <YOUR-INSTALL-DIR>/Sidfex-NextsimF/SRC/
 # make a copy of the initial file for your record
 cp env_sidfex.src env_sidfex_SRC.src
 # then edit your env file for your needs:
@@ -167,6 +167,41 @@ In `sitrack/sitrack/:
 
 ## 3. Run the tool
 <details>
-<summary>_Click here to drop down the  section to run the forecasting tool._</summary>
+<summary>Click here to drop down the  section to run the forecasting tool.</summary>
+
+### Master script:
+The master-script is called `MAIN.sh` in `<YOUR-INSTALL-DIR>/Sidfex-NextsimF/SRC/`.  It  can be run in your terminal or in a cronjob. This is the ***only script that needs to be run*** once the initial setup has been done (see above section).
+
+Notice that if you are on a Linux computer and not MacOS, then command giving the date is either `date` or `gdate` respectively. The `MAIN.sh` script and the environment file deals with this by checking on which plateform we are installed and chooses the date command (`$CMD_date`) accordingly.
+
+`MAIN.sh` consists of the following parts:
+
+1. `get_buoy_data-auto_DKRZ.sh`
+    * Downloads the position, that is latitude and longitude, closest to midnight of today (can be adjusted for) of the buoy (or other object) from the DKRZ server.
+
+2. `get_nextsim_files.sh`
+    * Downloading the hindcast (1 day) and the forecasting files (9 days) of the stand-alone sea-ice model `neXtSIM-F` through `copernicusmarine`. 
+    * Concatenates the hindcast and forecast files at which the following variables are stored: *longitude*, *latitude*, *siconc*, *sithick*, *vxsi*, *vysi*.
+    * **TO DO:** Pay attention to the message given in the file: For the very first download of data from `copernicusmarine` one needs to manually enter `copernicusmarine` login and password when requested in the terminal. `copernicusmarine` login (`copernicusmarine.login()`) thus needs to be uncommented in `get_nextsim.py` before running for the first time on the computer, and subsequently uncommented again for all following runs. 
+
+3. `generate_arctic_mesh.sh`
+    * Converts grid from a C-grid for `si3/NANUK4` to an A-grid for `neXtSIM-F` velocity fields.
+    * **TO DO:** Only needs to be ran once. After running you will get an output file called `coordinates_mesh_mask.nc` that you need to store. This directory needs to be given in `propagate_sidfex_seed.sh` in step 6. Once `coordinates_mesh_mask.nc` is generated, the script `generate_arctic_mesh.sh` can be commented in `sidfex_chain.sh` to avoid it running unnecessarily.
+
+
+4. `hindcast_seeds.sh`
+    * Loops over the file, `sidfexloc_${analDate}.dat`, with buoy ID, positions and time that was created in step 1. If last buoy position was given within a day before midnight we use the hindcast of `neXtSIM-F` together with the `sitrack` scripts to advect the buoy's position until midnight. If some buoys are already at midnight they are not included in the hindcast procedure. All positions at midnight are stored into one file, `sidfexloc_out_${analDate}.dat`, at which its positions are given to the symbolic link `sidfexloc.dat` which is used in the next step.
+
+5. `generate_sidfex_seeding.sh`
+    * Connects `sidfexloc_out_${analDate}.dat` to the symbolic link `sidfexloc.dat` which is used to seed the buoy positons in our domain from a given start time. 
+    * Outputs a seeding file called something like `${yesterdayDate}_${finalForecastDate}_hr-nersc-MODEL-nextsimf-concatenated-ARC-b${analDate}-fv00.0.nc`, where the variables `${yesterdayDate}`, `${finalForecastDate}` and `${analDate}` respectively are the date before analDate, the date of the last forecasted day in this run, and the date of today (unless you decide to forecast for another inital date).
+
+6. `propagate_sidfex_seed.sh`
+    * Advects the buoys generated and outputted in a seeding file in step 5. by using the grid created in step 3. and the *siconc*, *vxsi*, *vysi* from step 2. 
+    * Outputs a forecast file called something like `data_A-grid_'${yesterdayDate}'_nersc_tracking_sidfex_1h_'${analDate}'h00_'${forecastEndDate}'h00_3km.nc`, where the variable `${forecastEndDate}` is the date after the last forecasted date (i.e. after `${finalForecastDate}`) at midnight. 
+
+7. `to_sidfex.sh`
+    * Uses the output forecasting file from step 6. and writes its information to an ASCII-file for each buoy as of the required [`SIDFEx`](https://www.polarprediction.net/fileadmin/user_upload/www.polarprediction.net/Home/YOPP/SIDFEx/SIDFEx_background_and_guidelines_20211207.pdf) format. 
+    * Each buoy outputs a file called something like `IGE_Datlas_neXtSIM-F_sitrack_300534062895730_2024-109_001.txt`, where `300534062895730` is the buoy ID, `2024` is the year, `109` is the day of the year, and `001` is the ensemble member number. The files are stored in the directory *./sidfex/workdir/workdir_analDate/sidfex_output*.
 
 </details>
