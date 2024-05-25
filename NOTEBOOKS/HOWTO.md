@@ -4,7 +4,7 @@ _!!! NOTE: As of today 2024-05-18 the set up of this repository is still on-goin
 
 ## 1. Installation and dependecies
 <details>
-<summary>Click here to drop down the section about installation.</summary>
+<summary>_Click here to drop down the section about installation._</summary>
     
 ### 1.1 To get our Sidfex-NextsimF tool:
 
@@ -72,12 +72,92 @@ Required if you want to use the plotting functionality (usually triggered with `
 
 ## 2. Setp up
 <details>
-<summary>Click here to drop down the set up section.</summary>
+<summary>_Click here to drop down the set up section._</summary>
+
+### 2.1 Edit the environment file
+
+### 2.2 Edit sitrack
+Some of this is needed only until LB has accepted our pull request to sitrack. TO BE UPDATED.
+
+### Link to our `si3_part_tracker.py`:
+* In `sitrack`:
+```
+cd <YOUR-INSTALL-DIR>/sitrack/
+mv si3_part_tracker.py si3_part_tracker_SRC.py
+ln -sf <YOUR-INSTALL-DIR>/Sidfex-NextsimF/SRC/scripts4sitrack/si3_part_tracker.py .
+```
+### Link to our `generate_sidfex_seeding_vol2.py`:
+```
+cd <YOUR-INSTALL-DIR>/sitrack/tools/
+ln -sf <YOUR-INSTALL-DIR>/Sidfex-NextsimF/SRC/scripts4sitrack/generate_sidfex_seeding_vol2.py .
+```
+
+### `xy_arctic_to_meshmask.py`
+* In `sitrack/tools/xy_arctic_to_meshmask.py`: Changed default values of *lat0* and *lon0* to lat0=90., lon0=-45.
+
+### `util.py`
+In `sitrack/sitrack/:
+* Function `Geo2CartNPSkm1D`: changed default values of *lat0* and *lon0* to `Geo2CartNPSkm1D( pcoorG, lat0=90., lon0=-45. ):`
+* Function `CartNPSkm2Geo1D`: changed default values of *lat0* and *lon0* to `CartNPSkm2Geo1D( pcoorC, lat0=90., lon0=-45. ):`
+* Function `ConvertGeo2CartesianNPSkm`: changed default values of *lat0* and *lon0* to `ConvertGeo2CartesianNPSkm( plat, plon, lat0=90., lon0=-45. ):`
+* Function `ConvertCartesianNPSkm2Geo`: changed default values of *lat0* and *lon0* to `ConvertCartesianNPSkm2Geo( pY, pX, lat0=90., lon0=-45. ):`
+
+### `ncio.py`
+In `sitrack/sitrack/:
+* Line 230: `v_bid  = f_out.createVariable('id_buoy',   'i8',(cd_buoy,))` changed from `i4` to `i8`.
+* Line 249: `    v_buoy[:] = np.arange(Nb,dtype='i8')` changed from `i4` to `i8`.
+* Line 457 inside function `ModelFileTimeInfo`: `zz = split('-',vn[2])` changed `vn[1]` to `vn[2]` due to naming of concatinated `neXtSIM-F` file.
+
+### `tracking.py`
+In `sitrack/sitrack/:
+* Added the function:
+
+        def SidfexSeeding( filepath='./sidfexloc.dat' ):
+        ''' Generate seeding lon lat from sidfex buoys read from text file.
+        Returns an array with lat lon and another with buoy IDs.
+        '''
+        print("============= SIDFEX SEEDING")
+        #debug example zLatLon = np.array([ [75.,190.] ])
+        sidfexdat = ReadFromSidfexDatFile( filepath )
+        print('sidfexdat', sidfexdat)
+        print('sidfexdat.shape', sidfexdat.shape)
+        print('sidfexdat.ndim', sidfexdat.ndim)
+        if sidfexdat.ndim > 1:
+            zLatLon = sidfexdat[:,[2,1]] # reverse order of columns so that it is now lat lon.
+            zIDs = sidfexdat[:,0].astype(int)
+        else:
+            zLatLonsingle = sidfexdat[[2,1]]
+            zLatLon=np.stack((zLatLonsingle,zLatLonsingle))  # here we duplicate the line to avoid problem when read by script generate_seeding
+            zIDssingle = sidfexdat[0].astype(int)
+            zIDs = np.stack((zIDssingle,zIDssingle)) # here we duplicate the line to avoid problem when read by script generate_seeding
+        return zLatLon,zIDs
+
+* Added the function:
+
+        def ReadFromSidfexDatFile( filepath='./sidfexloc.dat' ):
+        '''
+            Reads from text file sidfex.dat and returns an array with id, lon, lat for all sidfex buoys at a given date.
+        '''
+        from os.path import exists
+        if (exists(filepath)):
+            # reads buoys id and locations (lon lat) from text file
+            listbuoys = np.genfromtxt(open(filepath))
+            # Keep track of how many buoys are read in input file
+            NBUOYTOTR=listbuoys.shape[0]
+            print("======== Nb of buoys read from sidfex file......"+str(NBUOYTOTR))
+        else:
+            print("============================================")
+            print("=== Error ! 'sidfexloc.dat' file is missing.")
+            print("============================================")
+            exit(0)
+        return listbuoys
+
+* Commented the function `debugSeeding1():`.
 
 </details>
 
 ## 3. Run the tool
 <details>
-<summary>Click here to drop down the  section to run the forecasting tool.</summary>
+<summary>_Click here to drop down the  section to run the forecasting tool._</summary>
 
 </details>
