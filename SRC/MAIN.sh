@@ -62,4 +62,4 @@ bash ${DIR_SCRIPTS}to_sidfex.sh ${analDate}
 
 # submit outputted ascii-files to the sidfex server
 #echo "######################## CURRENTLY RUNNING: submit_file2sidfex.sh ########################"
-bash ${DIR_SCRIPTS}submit_file2sidfex.sh ${analDate}
+#bash ${DIR_SCRIPTS}submit_file2sidfex.sh ${analDate}
