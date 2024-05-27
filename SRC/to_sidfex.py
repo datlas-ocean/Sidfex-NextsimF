@@ -21,9 +21,9 @@ def header_creator(GroupID,MethodID,TargetID,InitYear,InitDayOfYear,InitLat, Ini
 
     return header
 
-def get_variables_from_forecast(DIRnc, nc_filename, GroupID,MethodID, DIRsidfexout,  EnsMemNum = '001', dt = 1):
+def get_variables_from_forecast(nc_filepath, GroupID,MethodID, DIRsidfexout,  EnsMemNum = '001', dt = 1):
 
-    da = xr.open_dataset(DIRnc + nc_filename)
+    da = xr.open_mfdataset(nc_filepath)
     id_buoy = da.id_buoy.values
 
     for ib in range(0, len(id_buoy)):
@@ -61,16 +61,14 @@ def get_variables_from_forecast(DIRnc, nc_filename, GroupID,MethodID, DIRsidfexo
 
 
 
-DIRfcst = sys.argv[1] #'/Users/grungm/DEV/sitrack/nc/' # change for sys 
-print(DIRfcst)
-file_fcst =  sys.argv[2] #'data_A-grid_20240227_nersc_tracking_sidfex_1h_20240227h00_20240308h00_3km.nc' # change for sys 
+file_fcst =  sys.argv[1] #'data_A-grid_20240227_nersc_tracking_sidfex_1h_20240227h00_20240308h00_3km.nc' # change for sys 
 print(file_fcst)
-GroupID =  sys.argv[3] #'igedatlas001'
+GroupID =  sys.argv[2] #'igedatlas001'
 print(GroupID)
-MethodID =  sys.argv[4] #'neXtSIM-F-sitrack'
+MethodID =  sys.argv[3] #'neXtSIM-F-sitrack'
 print(MethodID)
 #EnsMemNum =  sys.argv[5] #'001'
-DIRsidfexout = sys.argv[5]
+DIRsidfexout = sys.argv[4]
 print(DIRsidfexout)
-fcst = get_variables_from_forecast(DIRfcst, file_fcst, GroupID, MethodID, DIRsidfexout)
+fcst = get_variables_from_forecast(file_fcst, GroupID, MethodID, DIRsidfexout)
 
