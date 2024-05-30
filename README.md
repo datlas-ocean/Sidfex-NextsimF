@@ -20,4 +20,3 @@ Main contributors:
 * Pierre Rampal (IGE)
 
 with contributions from Laurent Brodeau (Datlas) for the development of the [Mojito](https://github.com/brodeau/mojito) and [Sitrack](https://github.com/brodeau/sitrack) softwares, from Tim Williams for  producing and providing the NeXtSIM-F sea ice forecasts, and from Helge Goessling and  Valentin Ludwig (AWI) for the support regarding the SIDFEX project.
-TEST.
