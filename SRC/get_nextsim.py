@@ -5,13 +5,13 @@ import datetime
 import copernicusmarine as copernicusmarine
 
 # login to CMEMS: credentials only needs to be entered once through below line
-copernicusmarine.login()
+#copernicusmarine.login()
 
 # date the model is run
 analDate = sys.argv[1]
 #convert to CMEMS date format yymmdd
 runDate = datetime.datetime.strptime(str(analDate), '%Y%m%d').strftime('%y%m%d')
-print(runDate)
+
 
 def get_nextsim_forecast_hourlymean(datasetID, outputDIR):
     

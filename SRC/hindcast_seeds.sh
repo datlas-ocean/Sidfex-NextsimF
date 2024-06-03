@@ -7,7 +7,7 @@ analDate=$1
 echo "analdate $analDate"
 yesterdayDate=$(${DATE_CMD} +%Y%m%d --date="${analDate} 1 day ago" ) # Initial seeding date
 midnightDate=$(${DATE_CMD} +%Y-%m-%d --date="${analDate}") # Date (and format) at which hindcast should finish in sitrack
-finalForecastDate=$(${DATE_CMD} +%Y%m%d --date="${analDate} 8 day") # Date for last forecasted day
+finalForecastDate=$2 #$(${DATE_CMD} +%Y%m%d --date="${analDate} 8 day") # Date for last forecasted day
 analDate_hour=${analDate}000000
 
 

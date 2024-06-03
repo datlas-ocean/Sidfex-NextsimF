@@ -96,7 +96,7 @@ while read buoyID; do
    wget https://swift.dkrz.de/v1/dkrz_0262ea1f00e34439850f3f1d71817205/SIDFEx_index/observations/${buoyID}.txt 
    # strip off top line
    sed 1d ${buoyID}.txt > tmpFile.txt
-   mv tmpFile.txt ${buoyID}.dat # MFG: changed ${buoyID}.dat for .txt
+   mv tmpFile.txt ${buoyID}.txt #MFG: ${buoyID}.txt instead of .dat
 
    # extract relevant date and find closest report to 0Z for lat/lon positions
    # save to ascii file 

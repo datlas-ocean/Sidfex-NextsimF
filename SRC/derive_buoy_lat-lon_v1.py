@@ -38,7 +38,7 @@ thisBuoyStr = sys.argv[1]
 thisDateStr = sys.argv[2]
 
 # read in list of buoy reports
-buoyList = np.genfromtxt(open(thisBuoyStr+".dat", "rb"), delimiter='   ') # MFG 3 space delimiter instead of 5
+buoyList = np.genfromtxt(open(thisBuoyStr+".txt", "rb"), delimiter='   ') # MFG: 3 space delimiter instead of 5; .txt instead of .dat
 
 # derive correct date/time entries
 realDates = np.empty(len(buoyList), dtype=object)

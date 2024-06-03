@@ -5,7 +5,8 @@
 # get date of today 
 analDate=$1 
 yesterdayDate=$(${DATE_CMD} +%Y%m%d --date="${analDate} 1 day ago") # Initial seeding date
-forecastEndDate=$(${DATE_CMD} +%Y%m%d --date="${analDate} 9 day") # Date at the end of the forecast as forecast ends at midnight
+finalForecastDate=$2 # date from concatenated nextsim-f file, which is the last date being forecasted 
+forecastEndDate=$(${DATE_CMD} +%Y%m%d --date="${finalForecastDate} 1 day") # Date at the end of the forecast as forecast ends at midnight
 
 #DIRnc=${DIR_NC_FCST}
 ncin="data_A-grid_${yesterdayDate}_nersc_tracking_sidfex_seeding_1h_${analDate}h00_*h00_3km.nc"

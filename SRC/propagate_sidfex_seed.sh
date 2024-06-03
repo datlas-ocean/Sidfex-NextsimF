@@ -4,7 +4,7 @@
 # get today and not one day before today as they did
 analDate=$1 
 yesterdayDate=$( ${DATE_CMD} +%Y%m%d --date="${analDate} 1 day ago") # Initial seeding date
-finalForecastDate=$( ${DATE_CMD} +%Y%m%d --date="${analDate} 8 day") # Date for last forecasted day
+finalForecastDate=$2 #$( ${DATE_CMD} +%Y%m%d --date="${analDate} 8 day") # Date for last forecasted day
 echo "analdate $analDate"
 
 # Concatenated 10 days nextsim file (-i input) automated
