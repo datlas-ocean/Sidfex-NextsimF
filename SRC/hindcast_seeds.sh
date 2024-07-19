@@ -39,7 +39,9 @@ while read line; do
     # Propagation file needs nearest hour (ex. 13:59 --> 14, to avoid that 13:59 --> 13)
     ${PY_CMD} ${DIR_SCRIPTS}/nearest_hour.py "${tbuoy}" > ${DIR_buoy}${buoyID}_nearesthour.dat
     read -r h_round < "${DIR_buoy}${buoyID}_nearesthour.dat"
+    echo "h_round $buoyID : $h_round"
     h_nearest=$(${DATE_CMD} +%H --date="${h_round}")
+    echo "h_nearest $buoyID : $h_nearest"
 
     # For if-statement:
     dt_buoy=$(${DATE_CMD} +%Y%m%d%H%M%S --date="${tbuoy}") #date and time of buoy in a different format
@@ -71,8 +73,10 @@ while read line; do
         mv ./nc/* ${DIR_INITSEED}
 
         echo "-------------- IN HINDCAST: CONVERTING NC TO ASCII ------------"
+	#infile=data_A-grid_${yesterdayDate}_nersc_tracking_sidfex_seeding_1h_${t_genNC}h*_${analDate}h00_3km.nc
         ${PY_CMD} ${DIR_SCRIPTS}convert_nc_to_ascii.py ${DIR_NC_FCST}/ data_A-grid_${yesterdayDate}_nersc_tracking_sidfex_seeding_1h_${t_genNC}h${h_nearest}_${analDate}h00_3km.nc > ${DIR_buoy}${bID}_pos_mnght_${analDate}.dat
-        read -r byID lon_mnght lat_mnght < "${DIR_buoy}${bID}_pos_mnght_${analDate}.dat"
+        #${PY_CMD} ${DIR_SCRIPTS}convert_nc_to_ascii.py ${DIR_NC_FCST}/ data_A-grid_${yesterdayDate}_nersc_tracking_sidfex_seeding_1h_${t_genNC}h*_${analDate}h00_3km.nc > ${DIR_buoy}${bID}_pos_mnght_${analDate}.dat
+	read -r byID lon_mnght lat_mnght < "${DIR_buoy}${bID}_pos_mnght_${analDate}.dat"
         echo -e "$byID $lon_mnght $lat_mnght" >> "${DIR_buoy}sidfexloc_out_${analDate}.dat"
 
     elif [[ ${dt_buoy} -ge ${t_tres} ]] && [[ ${dt_buoy} -lt ${analDate_hour} ]] ; then

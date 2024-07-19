@@ -21,10 +21,12 @@ def header_creator(GroupID,MethodID,TargetID,InitYear,InitDayOfYear,InitLat, Ini
 
     return header
 
-def get_variables_from_forecast(nc_filepath, GroupID,MethodID, DIRsidfexout,  EnsMemNum = '001', dt = 1):
+def get_variables_from_forecast(nc_filepath, ncseed_filepath, GroupID,MethodID, DIRsidfexout,  EnsMemNum = '001', dt = 1):
 
     da = xr.open_mfdataset(nc_filepath)
     id_buoy = da.id_buoy.values
+    
+    seed = xr.open_dataset(ncseed_filepath)
 
     for ib in range(0, len(id_buoy)):
 
@@ -43,10 +45,24 @@ def get_variables_from_forecast(nc_filepath, GroupID,MethodID, DIRsidfexout,  En
         Lat = da.latitude.values[::dt, ib]
         InitLat =  Lat[0]
         # Convert first element of the longitude to the similar writing style as the other elements
-        InitLon_hdr = np.array((da.longitude.values[:1:dt, ib]-360)[0])
-        InitLon = np.array((da.longitude.values[:1:dt, ib]-360))
-        OtherLon = da.longitude.values[1::dt, ib]
-        Lon = np.concatenate((InitLon, OtherLon))
+        if da.longitude.values[::dt, ib][0] > 180.0 and da.longitude.values[::dt, ib][0] < 360.0:
+            InitLon_hdr = np.array((da.longitude.values[:1:dt, ib]-360)[0])
+            init_lon = np.array((da.longitude.values[:1:dt, ib]-360))
+            other_lon = da.longitude.values[1::dt, ib]
+            Lon = np.concatenate((init_lon, other_lon))
+        else:
+            Lon = da.longitude.values[::dt, ib]
+            InitLon_hdr = np.array((da.longitude.values[:1:dt, ib])[0])
+
+
+#        if seed.longitude.values[::dt, ib][0] > -180.0 and seed.longitude.values[::dt, ib][0] < 0.0:
+#            InitLon_hdr = np.array((seed.longitude.values[:1:dt, ib])[0])
+#            init_lon = np.array((seed.longitude.values[:1:dt, ib]))
+#            other_lon = da.longitude.values[1::dt, ib]
+#            Lon = np.concatenate((init_lon, other_lon))
+#        else:
+#            Lon = da.longitude.values[::dt, ib]
+#            InitLon_hdr = np.array((da.longitude.values[:1:dt, ib])[0])
 
         # to file
         name = file_name_creator(GroupID,MethodID, BuoyID, InitYear, InitDOY, EnsMemNum )
@@ -63,12 +79,14 @@ def get_variables_from_forecast(nc_filepath, GroupID,MethodID, DIRsidfexout,  En
 
 file_fcst =  sys.argv[1] #'data_A-grid_20240227_nersc_tracking_sidfex_1h_20240227h00_20240308h00_3km.nc' # change for sys 
 print(file_fcst)
-GroupID =  sys.argv[2] #'igedatlas001'
+file_seed = sys.argv[2]
+print('file_seed:', file_seed)
+GroupID =  sys.argv[3] #'igedatlas001'
 print(GroupID)
-MethodID =  sys.argv[3] #'neXtSIM-F-sitrack'
+MethodID =  sys.argv[4] #'neXtSIM-F-sitrack'
 print(MethodID)
 #EnsMemNum =  sys.argv[5] #'001'
-DIRsidfexout = sys.argv[4]
+DIRsidfexout = sys.argv[5]
 print(DIRsidfexout)
-fcst = get_variables_from_forecast(file_fcst, GroupID, MethodID, DIRsidfexout)
+fcst = get_variables_from_forecast(file_fcst, file_seed, GroupID, MethodID, DIRsidfexout)
 

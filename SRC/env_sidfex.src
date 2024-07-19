@@ -1,1 +1,74 @@
-env_sidfex_SLX-frazilo.src
+# This is where you set up your environment 
+
+# PYTHON CMD
+export PY_CMD="python3"   # on frazilo
+#export PY_CMD=python   # on macos laptop 
+                                                                                                                                           
+
+# Where Mojito is installed
+export DIR_mojito="/home/maren/DEV/mojito/"
+
+# Where sitrack is installed:
+export DIR_sitrack="/home/maren/DEV/sitrack/"
+export DIR_gnrate_mesh=${DIR_sitrack}tools/
+
+# Where our SIDFEX forecasting tools are installed
+export DIR_sidfex="/home/maren/DEV/Sidfex-NextsimF/SRC/"
+export DIR_SCRIPTS=$DIR_sidfex/
+
+# Where the input and output files are stored:
+# Main:
+export DIR_DATWORK="/home/maren/data/SIDFEX/"
+# then one directory created per operational day: 
+export DIR_workdir=${DIR_DATWORK}workdir/working_${analDate}/
+# one subdirectory where the intermediate outputs are stored:
+export DIR_INITSEED=${DIR_workdir}nc/
+export DIR_NC_FCST=${DIR_workdir}nc/
+# one subdirectory where to store the downloaded SIDFEX buoys:
+export DIR_buoy=${DIR_workdir}/buoy_data/
+# one subdirectory where to store the downloaded NeXtSIM-F data
+export DIR_nextsim=${DIR_workdir}nextsim_data/
+# output directory of sidfex forecast ready to be sent
+export DIR_OUTsidfex=${DIR_workdir}toSidfex/
+
+# log file
+export LOG_FILE="/home/maren/log/sidexlog.txt"
+export LOG_MOSAIC="/home/maren/log/mosaiclog.txt"
+
+# MISC (TO CLEAN?)
+# variables to give python script
+export DIRnc=$DIR_NC_FCST
+
+# PYTHON PATH
+PYTHONPATH=${DIR_mojito}:${DIR_sitrack}:./:${PYTHONPATH}
+export PYTHONPATH
+export PATH=/usr/bin/:$PATH
+
+
+# DETECT IF date or gdate command should be used, based on which plateform
+# Detect the platform
+if [[ "$(uname)" == "Darwin" ]]; then
+    # macOS platform
+    DATE_CMD="gdate"
+    # Ensure gdate is installed
+    if ! command -v gdate &> /dev/null; then
+        echo "gdate could not be found. Please install it using 'brew install coreutils'."
+        exit 1
+    else
+         echo "OK, we're on a MacOS platfeform. The gdate command was found. Everything is bon."
+    fi
+else
+    # Assume Linux platform
+    DATE_CMD="date"
+    echo "Ok, we're not on a macOS plateform, so we assume it's a linux platfeform. The date was command is found.  Everything is bon."
+fi
+export DATE_CMD
+
+
+#Function to ssh to CAL1/summer mount:
+function scp2CAL1() {
+# scp file to CAL1
+# $1 path of the file to copy
+# $2 path for where to copy the file remotely
+scp $1 grungm@ige-meom-cal1.u-ga.fr:$2
+ }
