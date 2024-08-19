@@ -119,33 +119,37 @@ else
 
 done < ${buoyList} # read central buoy list
 
-# complain if no valid buoy files counted for today
 if [[ ${numBuoys} -eq 0 ]] ; then
+	echo "$(date '+%Y-%m-%d') Forecast Analysis Date: $analDate, Buoy Count: $numBuoys" >> "$LOG_FILE"
+fi
 
-   echo "**ERROR** no buoys found for this date"
+# complain if no valid buoy files counted for today
+#if [[ ${numBuoys} -eq 0 ]] ; then
+
+#   echo "**ERROR** no buoys found for this date"
 
    # if today's date (likely crontab initiated) then send an email warning
-   if [[ ${runDate} == ${todayDate} ]] ; then
+#   if [[ ${runDate} == ${todayDate} ]] ; then
 
       # define email details
-      subject="SIDFEx WARNING : 0 buoys for ${analDate}"
-      EMAIL_ID="maren-friele.grung@univ-grenoble-alpes.fr"
-      textfile="${DIR_buoy}/email_warning_buoys.txt"
-      cat << EOC > ${textfile}
-Hi,
-Your SIDFEx job could not find any buoys or other targets with reports for today's analysis day ${analDate}
-Best
+#      subject="SIDFEx WARNING : 0 buoys for ${analDate}"
+#      EMAIL_ID="maren-friele.grung@univ-grenoble-alpes.fr"
+#      textfile="${DIR_buoy}/email_warning_buoys.txt"
+#      cat << EOC > ${textfile}
+#Hi,
+#Your SIDFEx job could not find any buoys or other targets with reports for today's analysis day ${analDate}
+#Best
 
-EOC
+#EOC
 
       # send the email
       #echo "Sending warning email to ${EMAIL_ID}"
       # SLX
       #/usr/local/bin/mutt -s "${subject}" -i ${textfile} -x -z -n ${EMAIL_ID} << END || status="failed"
-END
+#END
 
-   fi # today
+#   fi # today
 
-   exit 9
+#   exit 9
 
-fi # no buoys
+#fi # no buoys

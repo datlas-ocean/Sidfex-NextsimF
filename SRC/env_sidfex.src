@@ -30,6 +30,13 @@ export DIR_buoy=${DIR_workdir}/buoy_data/
 export DIR_nextsim=${DIR_workdir}nextsim_data/
 # output directory of sidfex forecast ready to be sent
 export DIR_OUTsidfex=${DIR_workdir}toSidfex/
+# MOSAIc Main:
+# one subdirectory where neXtSIM-F data are stored
+DIR_nsim_summer_mosaic="/home/maren/../../SUMMER/DATA_MEOM/DATA_SET/NEXTSIM-F/MOSAIC/????/??/"
+# Reforecasting Main:
+# one subdirectiory where neXtSIM-F data are stored
+DIR_nsim_summer="/home/maren/../../SUMMER/DATA_MEOM/DATA_SET/NEXTSIM-F/????/??/"
+
 
 # log file
 export LOG_FILE="/home/maren/log/sidexlog.txt"
