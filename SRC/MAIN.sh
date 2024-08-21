@@ -24,6 +24,9 @@ echo $todayDate
 # get date
 analDate=$(${DATE_CMD} +\%Y\%m\%d --date="${runDate}") #MFG
 echo "=== We will be working on bulletin's date : ${analDate}"
+# get date of yesterday
+yesterdayDate=$(${DATE_CMD} +%Y%m%d --date="${analDate} 1 day ago") # Initial seeding date
+
 
 # DIRECTORIES updated w/ date
 source /home/maren/DEV/Sidfex-NextsimF/SRC/env_sidfex.src
@@ -61,8 +64,6 @@ get_forecasting_dates_from_concatenated_file() {
 echo "######################## CURRENTLY RUNNING: get_buoy_data-auto_DKRZ.sh (GET UPDATED BUOY POSITIONS) ########################"
 bash ${DIR_SCRIPTS}/get_buoy_data-auto_DKRZ.sh ${todayDate} ${runDate} ${analDate}
 #source ${DIR_SCRIPTS}/get_buoy_data-auto_DKRZ.sh ${todayDate} ${runDate} ${analDate}
-#nB=$numBuoys
-#echo "number of Buoys: $nB"
 
 # get nextsim-f data from CMEMS
 echo "######################## CURRENTLY RUNNING: get_nextsim_files.sh (GET NEXTISIM SEA ICEHINCAST AND FORECAST) ########################"
@@ -106,10 +107,16 @@ if [ "$file_count" -ge 6 ] && [ "$file_count" -le 11 ]; then
   # submit outputted ascii-files to the sidfex server
   echo "######################## CURRENTLY RUNNING: submit_file2sidfex.sh ########################"
   bash ${DIR_SCRIPTS}submit_file2sidfex.sh ${analDate}
-
-  # clean on frazilo and move files to summer storage
-  echo "######################## CURRENTLY RUNNING: finalcleaningFRAZILO.sh  ########################"
-  bash ${DIR_SCRIPTS}finalcleaningFRAZILO.sh ${analDate}
+ 
+  # check if output file exist
+  ncout="data_A-grid_${yesterdayDate}_nersc_tracking_sidfex_seeding_1h_${analDate}h00_????????h00_3km.nc" 
+  if [ -f ${DIR_NC_FCST}/${ncout} ]; then
+	  # clean on frazilo and move files to summer storage
+ 	  echo "######################## CURRENTLY RUNNING: finalcleaningFRAZILO.sh  ########################"
+ 	  bash ${DIR_SCRIPTS}finalcleaningFRAZILO.sh ${analDate}
+  else
+	  echo "Cannot find file ${DIR_NC_FCST}/${ncout}. An error must have occured in previous steps. No cleaning on FRAZILO executed."
+  fi
 
 else
     echo "Less than 5 files downloaded. Skipping forecast."
@@ -118,11 +125,3 @@ else
     #echo "$(date '+%Y-%m-%d') Forecast Analysis Date: $analDate, File Count: $file_count" >> "$LOG_FILE"
 fi
 
-# log if no buoys are active or if not all neXtSIM-F files are downloaded
-#if [[ "$numBuoys" -eq 0 ] || [ "$file_count" -le 10 ]]; then
-#if [ "$numBuoys" -eq 0 ]; then
-        #echo "number of Buoys: $numBuoys"
-    # Log analysis date and file count
-#    echo "$(date '+%Y-%m-%d') Forecast Analysis Date: $analDate, File Count: $file_count, Buoy Count: $numBuoys" >> "$LOG_FILE"
-    #echo "$(date '+%Y-%m-%d') Forecast Analysis Date: $analDate, Buoy Count: $numBuoys" >> "$LOG_FILE"
-#fi
