@@ -1,5 +1,5 @@
-# Forecasting SIDFEx buoys  from NeXtSIM-F sea ice forecast
-This repository contains the tools and tutorials  to forecast the  trajectories of the [SIDFEx buoys](https://www.polarprediction.net/key-yopp-activities/sea-ice-prediction-and-verification/sea-ice-drift-forecast-experiment/) from the [sea ice forecast based on the NeXtSIM-F model](https://data.marine.copernicus.eu/product/ARCTIC_ANALYSISFORECAST_PHY_ICE_002_011/description).
+# Forecasting SIDFEX buoys  from NeXtSIM-F sea ice forecast
+This repository contains the tools and tutorials  to forecast the  trajectories of the [SIDFEX buoys](https://www.polarprediction.net/key-yopp-activities/sea-ice-prediction-and-verification/sea-ice-drift-forecast-experiment/) from the [sea ice forecast based on the NeXtSIM-F model](https://data.marine.copernicus.eu/product/ARCTIC_ANALYSISFORECAST_PHY_ICE_002_011/description).
 
 ### In this repository, you will find:
 * a [tutorial](./NOTEBOOKS/HOWTO.md) to set up and make use of the tools,
@@ -8,7 +8,7 @@ This repository contains the tools and tutorials  to forecast the  trajectories 
   
   _!!! NOTE: As of today 2024-05-18 the set up of this repository is still on-going. Do not use before it is ready to be used. !!!._
 
-### Our forecasts for SIDFEx buoys are available here:
+### Our forecatsts for SIDFEX buoys are available here:
 * [on the DKRZ SIDFEX webpage (click here).](https://swiftbrowser.dkrz.de/public/dkrz_0262ea1f00e34439850f3f1d71817205/SIDFEx_processed/igedatlas001/)
 
 ### Credits:
@@ -19,4 +19,4 @@ Main contributors:
 * Stephanie Leroux (Datlas)
 * Pierre Rampal (IGE)
 
-with contributions from Laurent Brodeau (Datlas) for the development of the [Mojito](https://github.com/brodeau/mojito) and [Sitrack](https://github.com/brodeau/sitrack) softwares, from Tim Williams for  producing and providing the NeXtSIM-F sea ice forecasts, and from Helge Goessling and  Valentin Ludwig (AWI) for the support regarding the SIDFEx project.
+with contributions from Laurent Brodeau (Datlas) for the development of the [Mojito](https://github.com/brodeau/mojito) and [Sitrack](https://github.com/brodeau/sitrack) softwares, from Tim Williams for  producing and providing the NeXtSIM-F sea ice forecasts, and from Helge Goessling and  Valentin Ludwig (AWI) for the support regarding the SIDFEX project.
