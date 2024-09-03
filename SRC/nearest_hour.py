@@ -4,11 +4,26 @@ from datetime import datetime, timedelta
 
 t_buoy = sys.argv[1]
 
-tbuoy = datetime.strptime(t_buoy, "%Y-%m-%d %H:%M:%S.%f")
+formats = ["%Y-%m-%d %H:%M:%S.%f", "%Y-%m-%d %H:%M:%S"]
+
+def check_format(date_string, formats):
+    for fmt in formats:
+        try:
+            # Try to parse the date string with the current format
+            parsed_date = datetime.strptime(date_string, fmt)
+            return parsed_date
+        except ValueError:
+            # If parsing fails, continue to the next format
+            continue
+    # If none of the formats match, raise an error
+    raise ValueError("Date string does not match any of the provided formats.")
+
+tbuoy = check_format(t_buoy, formats)
+
+#tbuoy = datetime.strptime(t_buoy, "%Y-%m-%d %H:%M:%S.%f")
+#tbuoy1 = datetime.strptime(t_buoy, "%Y-%m-%d %H:%M:%S")
 
 def nearest_hour(time):
-#    rnd = pd.Timestamp(tbuoy).round('60min')
-#    rnd = pd.Timestamp(tbuoy).ceil('60min')
 
     if time.minute >= 30:
         # Round up to the next hour
