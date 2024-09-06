@@ -63,7 +63,6 @@ get_forecasting_dates_from_concatenated_file() {
 # get sidfex buoys; get the number of buoys downloaded
 echo "######################## CURRENTLY RUNNING: get_buoy_data-auto_DKRZ.sh (GET UPDATED BUOY POSITIONS) ########################"
 bash ${DIR_SCRIPTS}/get_buoy_data-auto_DKRZ.sh ${todayDate} ${runDate} ${analDate}
-#source ${DIR_SCRIPTS}/get_buoy_data-auto_DKRZ.sh ${todayDate} ${runDate} ${analDate}
 
 # get nextsim-f data from CMEMS
 echo "######################## CURRENTLY RUNNING: get_nextsim_files.sh (GET NEXTISIM SEA ICEHINCAST AND FORECAST) ########################"
@@ -121,7 +120,5 @@ if [ "$file_count" -ge 6 ] && [ "$file_count" -le 11 ]; then
 else
     echo "Less than 5 files downloaded. Skipping forecast."
 
-    # Log analysis date and file count
-    #echo "$(date '+%Y-%m-%d') Forecast Analysis Date: $analDate, File Count: $file_count" >> "$LOG_FILE"
 fi
 
