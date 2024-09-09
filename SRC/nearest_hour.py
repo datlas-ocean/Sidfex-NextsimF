@@ -4,7 +4,7 @@ from datetime import datetime, timedelta
 
 t_buoy = sys.argv[1]
 
-formats = ["%Y-%m-%d %H:%M:%S.%f", "%Y-%m-%d %H:%M:%S"]
+formats = ["%Y-%m-%d %H:%M:%S.%f", "%Y-%m-%d %H:%M:%S", "%Y-%m-%d %H:%M"]
 
 def check_format(date_string, formats):
     for fmt in formats:
