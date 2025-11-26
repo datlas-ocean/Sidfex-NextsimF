@@ -1,4 +1,6 @@
 # Forecasting SIDFEX buoys  from NeXtSIM-F sea ice forecast
+[![DOI](https://zenodo.org/badge/802358064.svg)](https://doi.org/10.5281/zenodo.17721858)
+
 This repository contains the tools and tutorials  to forecast the  trajectories of the [SIDFEX buoys](https://www.polarprediction.net/key-yopp-activities/sea-ice-prediction-and-verification/sea-ice-drift-forecast-experiment/) from the [sea ice forecast based on the NeXtSIM-F model](https://data.marine.copernicus.eu/product/ARCTIC_ANALYSISFORECAST_PHY_ICE_002_011/description).
 
 ### In this repository, you will find:
